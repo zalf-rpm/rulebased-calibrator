@@ -1,0 +1,26 @@
+{    
+    "rule_01": {
+        "description": "leaf biomass after cutting should be greater than 50",
+        "custom event": [
+            "Cutting", [
+                ["OrgBiom|rule_01", "Leaf"]
+            ]
+        ],
+        "rule math": "x > 50",
+        "success score": 0,
+        "failure score": 1        
+    },
+    
+    "rule_02": {
+        "description": "maximum LAI of each year should be smaller than 8",
+        "custom event": [
+            "yearly", [
+                ["LAI|rule_02", "MAX"]
+            ]
+        ],
+        "rule math": "x < 8",
+        "success score": 0,
+        "failure score": 1        
+    }
+
+}

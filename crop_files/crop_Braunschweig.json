@@ -1,0 +1,95 @@
+{
+	"__UNDERSCORES IN FRONT MEANS IGNORE THE KEY, this is just to keep a valid JSON file": "",
+	"__!!! check and beautify JSON files with http://codebeautify.org/jsonviewer !!!": "",
+	
+	"__this is the path which is prepended to 'include-from-file' paths, if they are relative paths": "",
+	"_include-file-base-path": "../",
+	
+	"__user defined crops section to be used via references": "",
+	"crops": {
+		"CLV": {
+			"is-winter-crop": false,
+			"cropParams": {
+				"species":  ["include-from-file", "monica-parameters/crops/clover-grass-ley.json"],
+				"cultivar": ["include-from-file", "monica-parameters/crops/clover-grass-ley/.json"]
+			},
+			"residueParams": ["include-from-file", "monica-parameters/crop-residues/clover-grass-ley.json"]
+		},
+		"ALF": {
+			"is-winter-crop": false,
+			"cropParams": {
+				"species": ["include-from-file", "monica-parameters/crops/alfalfa.json"],
+				"cultivar": ["include-from-file", "monica-parameters/crops/alfalfa/.json"]
+			},
+			"residueParams": ["include-from-file", "monica-parameters/crop-residues/alfalfa.json"]
+		},
+		"SM": {
+			"is-winter-crop": false,
+			"cropParams": {
+				"species": ["include-from-file", "monica-parameters/crops/maize.json"],
+				"cultivar": ["include-from-file", "monica-parameters/crops/maize/silage-maize.json"]
+			},
+			"residueParams": ["include-from-file", "monica-parameters/crop-residues/maize.json"]
+		}
+	},
+	
+	"__user defined fertilizer parameteres section to be used via references": "",
+	"fert-params": {
+		"AN": ["include-from-file", "monica-parameters/mineral-fertilisers/AN.json"],
+		"CADLM": ["include-from-file", "monica-parameters/organic-fertilisers/CADLM.json"]
+	}, 
+
+	"__relative date crop rotation example": "",
+	"cropRotation": [
+		{"worksteps": [
+			{"date": "2006-03-15", "type": "Sowing", "crop": ["ref", "crops", "CLV"] }
+			]
+		},
+
+		{"worksteps": [
+				{"date": "0000-04-14","type": "MineralFertilization",	
+						"amount": [80.0, "kg N"],	"partition": ["include-from-file", "monica-parameters/mineral-fertilisers/AP.json"]},
+				{"date": "0000-04-14","type": "MineralFertilization",	
+						"amount": [135.0, "kg N"],	"partition": ["include-from-file", "monica-parameters/mineral-fertilisers/PN.json"]},			
+				{"date": "0000-05-03","type": "MineralFertilization",	
+					"amount": [100.0, "kg N"],	"partition": ["include-from-file", "monica-parameters/mineral-fertilisers/AN.json"]},	
+				{
+					"date": "0000-05-14", 
+					"type": "_Cutting",
+					"organs": {
+						"Leaf": [1, "m2 m-2", "left"],
+						"Shoot": [100, "kg ha-1", "left"],
+						"Fruit": [10000000000, "kg ha-1", "cut"]
+					},
+					"export": {
+						"Leaf": [100, "%"],
+						"Shoot": [100, "%"],
+						"Fruit": [100, "%"]
+					}
+				},
+				{"date": "0000-05-22","type": "MineralFertilization",	
+					"amount": [80.0, "kg N"],	"partition": ["include-from-file", "monica-parameters/mineral-fertilisers/AN.json"]},	
+				{
+					"date": "0000-11-24", 
+					"type": "Cutting",
+					"organs": {
+						"Leaf": [1, "m2 m-2", "left"],
+						"Shoot": [100, "kg ha-1", "left"],
+						"Fruit": [10000000000, "kg ha-1", "cut"]
+					},
+					"export": {
+						"Leaf": [100, "%"],
+						"Shoot": [100, "%"],
+						"Fruit": [100, "%"]
+					}
+				}
+
+			]
+		}
+	],
+	"__general crop parameters for the monica model": "",
+	"CropParameters": {
+		"=": ["include-from-file", "monica-parameters/general/crop.json"],
+		"__enable_hourly_FvCB_photosynthesis__": false
+	}
+}
